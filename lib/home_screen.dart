@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:loveday/Image/vanleon.dart';
+import 'package:loveday/Image/archaeum.dart';
 
 // 쿠퍼티노(iOS) 위젯을 사용하기 위해 필요
 import 'package:flutter/cupertino.dart';
