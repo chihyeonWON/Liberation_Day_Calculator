@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.pink[100], // 핑크 배경색 적용
+      backgroundColor: Colors.black, // 검은색 배경색 적용
       body: SafeArea( // 시스템 UI 피해서 UI 그리기
         top: true,
         bottom:false,
