@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 0)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month <= 0)
                     const DarkmagicianImage(), // 해방
                   if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 1)
                     const JinheilaImage(), // 진힐라
