@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loveday/home_screen.dart';
 
 class VanleonImage extends StatefulWidget {
   const VanleonImage({Key? key}) : super(key: key);
@@ -69,7 +68,7 @@ class _VanleonImageState extends State<VanleonImage> {
               // 화면의 반만큼 높이 구현
               height: MediaQuery.of(context).size.height/2,
             ),
-          ),
+          )
       ),
     );
   }
