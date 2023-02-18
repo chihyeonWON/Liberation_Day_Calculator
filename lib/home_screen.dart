@@ -19,6 +19,43 @@ class _HomeScreenState extends State<HomeScreen> {
 
   DateTime now = DateTime.now();
 
+  SharedPreferences? prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    setYear().whenComplete(() {
+      setState(() {});
+    });
+    setMonth().whenComplete(() {
+      setState(() {});
+    });
+    setDay().whenComplete(() {
+      setState(() {});
+    });
+  }
+
+  Future setYear() async {
+    prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
+    int? year = prefs!.getInt('year');
+    return Text('$year', style:const TextStyle(fontSize:50.0),
+    );
+  }
+
+  Future setMonth() async {
+    prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
+    int? month = prefs!.getInt('month');
+    return Text('$month', style: const TextStyle(fontSize:50.0),
+    );
+  }
+
+  Future setDay() async {
+    prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
+    int? day = prefs!.getInt('day');
+    return Text('$day', style: const TextStyle(fontSize:50.0),
+    );
+  }
+
   void onHeartPressed() {
     showCupertinoDialog( // 쿠퍼티노 다이얼로그 실행
       context: context,
@@ -34,9 +71,12 @@ class _HomeScreenState extends State<HomeScreen> {
               // 시간 제외하고 날짜만 선택하기
               mode: CupertinoDatePickerMode.date,
               // 날짜가 변경되면 실행되는 함수
-              onDateTimeChanged: (DateTime date) {
-                setState(()  {
-                  liberationDay = date;
+              onDateTimeChanged: (DateTime date) async {
+                prefs = await SharedPreferences.getInstance();
+                prefs!.setInt('year', date.year);
+                prefs!.setInt('month', date.month);
+                prefs!.setInt('day', date.day);
+                setState(() {
                 });
               },
             ),
@@ -61,12 +101,68 @@ class _HomeScreenState extends State<HomeScreen> {
                 // 반대축 최대 크기로 늘리기
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children:[
-                  _DDay(
-                    //  하트 눌렀을 때 실행할 함수 전달하기
-                    onHeartPressed: onHeartPressed,
-                    firstDay: liberationDay,
+                  const SizedBox(
+                    height:50,
                   ),
-                  VanleonImage(),
+                  Row(
+                    children: [
+                      Text(
+                        '해방 : ',
+                        style:TextStyle(fontSize:50.0,),
+                      ),
+                      FutureBuilder(
+                        future:setYear(),
+                        builder:(context,snapshot) {
+                          if(snapshot.hasData) {
+                            return snapshot.data;
+                          }
+                          return const Text('년도를 선택하세요');
+                        }
+                      ),
+                      const Text('.', style:TextStyle(fontSize:50.0)),
+                      FutureBuilder(
+                          future:setMonth(),
+                          builder:(context,snapshot) {
+                            if(snapshot.hasData) {
+                              return snapshot.data;
+                            }
+                            return const Text('월을 선택하세요');
+                          }
+                      ),
+                      const Text('.', style:TextStyle(fontSize:50.0)),
+                      FutureBuilder(
+                          future:setDay(),
+                          builder:(context,snapshot) {
+                            if(snapshot.hasData) {
+                              return snapshot.data;
+                            }
+                            return const Text('일을 선택하세요');
+                          }
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height:70,
+                  ),
+                  Text( //
+                    '남은 날 : ${DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).difference(DateTime(now.year, now.month, now.day)).inDays}일',
+                    style: TextStyle(
+                      fontSize: 50.0,
+                    )
+                  ),
+                  const SizedBox(
+                    height:70,
+                  ),
+                  ElevatedButton(
+                    onPressed: onHeartPressed,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: const Text('해방예정일 선택하기',
+                          style: TextStyle(fontSize:30.0,)
+                      ),
+                    ),
+                  ),
+                  const VanleonImage(),
                 ]
             )
         )
@@ -75,67 +171,3 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 
-
-class _DDay extends StatelessWidget {
-  // 하트 눌렀을 때 실행할 함수
-  final GestureTapCallback onHeartPressed;
-  // 사귀기 시작한 날
-  final DateTime firstDay;
-
-  _DDay({
-    required this.onHeartPressed, // 상위에서 함수 입력받기
-    required this.firstDay, // 날짜 변수로 입력받기
-  });
-
-  @override
-  Widget build(BuildContext context) {
-
-    // 테마 불러오기
-    final textTheme = Theme.of(context).textTheme;
-
-    // 현재 날짜 시간
-    final now = DateTime.now();
-
-    return Column(
-      children:[
-        const SizedBox(
-          height:16.0,
-        ),
-        Text(
-          '해방일 계산기',
-          style:textTheme.headline1,
-        ),
-        const SizedBox(
-          height:16.0,
-        ),
-        Text(
-          '해방 예정일',
-          style:textTheme.bodyText1,
-        ),
-        Text( // 임시로 지정한 만난 날짜
-          '${firstDay.year}.${firstDay.month}.${firstDay.day}',
-          style:textTheme.bodyText2,
-        ),
-        const SizedBox(
-          height: 16.0,
-        ),
-        IconButton(
-          iconSize:60.0,
-          onPressed:onHeartPressed,
-          icon:Icon(
-            Icons.favorite,
-            color:Colors.red,
-          ),
-        ),
-        const SizedBox(
-          height:16.0,
-        ),
-        Text( // 만난 후 DDay
-          // DDay 계산하기
-          '남은 날 ${firstDay.difference(DateTime(now.year, now.month, now.day)).inDays}',
-          style:textTheme.headline2,
-        ),
-      ],
-    );
-  }
-}
