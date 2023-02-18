@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:loveday/Image/vanleon.dart';
+
 // 쿠퍼티노(iOS) 위젯을 사용하기 위해 필요
 import 'package:flutter/cupertino.dart';
 
@@ -59,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onHeartPressed: onHeartPressed,
               firstDay: firstDay,
             ),
-            _CoupleImage(),
+            VanleonImage(),
           ]
         )
       )
@@ -129,25 +131,6 @@ class _DDay extends StatelessWidget {
           style:textTheme.headline2,
         ),
       ],
-    );
-  }
-}
-
-class _CoupleImage extends StatelessWidget {
-  const _CoupleImage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: Center(
-        child:
-        Image.asset(
-          'asset/img/middle_image.png',
-
-          // 화면의 반만큼 높이 구현
-          height: MediaQuery.of(context).size.height/2,
-      )
-      ),
     );
   }
 }
