@@ -163,7 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 1)
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays == 0)
+                    const ArchaeumImage(), // 해방
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 0 && DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 1)
                     const VanleonImage(), // 진힐라
                   if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 1 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<2)
                     const ArchaeumImage(), // 루시드
