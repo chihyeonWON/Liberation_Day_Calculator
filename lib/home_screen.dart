@@ -97,7 +97,7 @@ class _DDay extends StatelessWidget {
           height:16.0,
         ),
         Text(
-          'U&I',
+          '해방일 계산기',
           style:textTheme.headline1,
         ),
         const SizedBox(
