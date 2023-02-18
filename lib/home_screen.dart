@@ -129,7 +129,7 @@ class _DDay extends StatelessWidget {
         ),
         Text( // 만난 후 DDay
           // DDay 계산하기
-          '남은 날 ${firstDay.difference(DateTime(now.year, now.month, now.day)).inDays + 1}',
+          '남은 날 ${firstDay.difference(DateTime(now.year, now.month, now.day)).inDays}',
           style:textTheme.headline2,
         ),
       ],
