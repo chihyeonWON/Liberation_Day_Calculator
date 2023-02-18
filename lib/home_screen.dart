@@ -3,6 +3,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:loveday/Image/vanleon.dart';
 import 'package:loveday/Image/archaeum.dart';
+import 'package:loveday/Image/magnus.dart';
+import 'package:loveday/Image/seuu.dart';
+import 'package:loveday/Image/demian.dart';
+import 'package:loveday/Image/will.dart';
+import 'package:loveday/Image/lucid.dart';
+import 'package:loveday/Image/jinheila.dart';
+import 'package:loveday/Image/darkmagician.dart';
 
 // 쿠퍼티노(iOS) 위젯을 사용하기 위해 필요
 import 'package:flutter/cupertino.dart';
@@ -163,24 +170,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays == 0)
-                    const ArchaeumImage(), // 해방
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 0 && DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 1)
-                    const VanleonImage(), // 진힐라
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 1 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<2)
-                    const ArchaeumImage(), // 루시드
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 2 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<3)
-                    const ArchaeumImage(), // 윌
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 3 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<4)
-                    const ArchaeumImage(), // 데미안
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 4 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<5)
-                    const ArchaeumImage(), // 스우
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 5 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<6)
-                    const ArchaeumImage(), // 매그너스
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 6 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<7)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 0)
+                    const DarkmagicianImage(), // 해방
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 1)
+                    const JinheilaImage(), // 진힐라
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 2)
+                    const LucidImage(), // 루시드
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 3)
+                    const WillImage(), // 윌
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 4)
+                    const DemianImage(), // 데미안
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 5)
+                    const SeuuImage(), // 스우
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 6)
+                    const MagnusImage(), // 매그너스
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 7)
                     const ArchaeumImage(), // 아카이럼
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 7 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<8)
-                    const ArchaeumImage(), // 반레온
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 8)
+                    const VanleonImage(), // 반레온
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month > 8)
+                    const SingleChildScrollView(
+                      padding: EdgeInsets.only(top: 100.0, bottom:100.0,),
+                      child: const Text('해방일은 해방을 시작한 달부터 8개월 뒤입니다.',
+                          style: TextStyle(fontSize: 40)
+                      ),
+                    )
                 ],
             )
         )
