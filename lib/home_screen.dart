@@ -15,13 +15,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  late SharedPreferences prefs;
-
-  Future setYear() async { // 해방 예정일 저장하는 Future
-    prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
-    prefs.setInt('Year', liberationDay.year);
-  }
-
   DateTime liberationDay = DateTime.now();
 
   void onHeartPressed() {
@@ -39,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mode: CupertinoDatePickerMode.date,
               // 날짜가 변경되면 실행되는 함수
               onDateTimeChanged: (DateTime date) {
-                setState(() {
+                setState(()  {
                   liberationDay = date;
                 });
               },
@@ -66,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children:[
                   _DDay(
-                    // 하트 눌렀을 때 실행할 함수 전달하기
+                    //  하트 눌렀을 때 실행할 함수 전달하기
                     onHeartPressed: onHeartPressed,
                     firstDay: liberationDay,
                   ),
@@ -136,7 +129,7 @@ class _DDay extends StatelessWidget {
         ),
         Text( // 만난 후 DDay
           // DDay 계산하기
-          'D+${DateTime(now.year, now.month, now.day).difference(firstDay).inDays + 1}',
+          '남은 날 ${firstDay.difference(DateTime(now.year, now.month, now.day)).inDays + 1}',
           style:textTheme.headline2,
         ),
       ],
