@@ -17,13 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   late SharedPreferences prefs;
 
-  Future getLiberation() async { // 해방 예정일 저장하는 Future
+  Future setYear() async { // 해방 예정일 저장하는 Future
     prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
-    final int? liberationDay = prefs.getInt('liberationday');
-    return Text(
-      '${liberationDay}',
-      style:TextStyle(fontSize:60.0),
-    );
+    prefs.setInt('Year', liberationDay.year);
   }
 
   DateTime liberationDay = DateTime.now();
@@ -58,26 +54,26 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // 검은색 배경색 적용
-      body: SafeArea( // 시스템 UI 피해서 UI 그리기
-        top: true,
-        bottom:false,
-        child:Column(
-          // 위아래 끝에 위젯 배치
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        backgroundColor: Colors.black, // 핑크 배경색 적용
+        body: SafeArea( // 시스템 UI 피해서 UI 그리기
+            top: true,
+            bottom:false,
+            child:Column(
+              // 위아래 끝에 위젯 배치
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-          // 반대축 최대 크기로 늘리기
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children:[
-            _DDay(
-              // 하트 눌렀을 때 실행할 함수 전달하기
-              onHeartPressed: onHeartPressed,
-              firstDay: liberationDay,
-            ),
-            VanleonImage(),
-          ]
+                // 반대축 최대 크기로 늘리기
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children:[
+                  _DDay(
+                    // 하트 눌렀을 때 실행할 함수 전달하기
+                    onHeartPressed: onHeartPressed,
+                    firstDay: liberationDay,
+                  ),
+                  VanleonImage(),
+                ]
+            )
         )
-      )
     );
   }
 }
@@ -89,7 +85,7 @@ class _DDay extends StatelessWidget {
   final GestureTapCallback onHeartPressed;
   // 사귀기 시작한 날
   final DateTime firstDay;
-  
+
   _DDay({
     required this.onHeartPressed, // 상위에서 함수 입력받기
     required this.firstDay, // 날짜 변수로 입력받기
