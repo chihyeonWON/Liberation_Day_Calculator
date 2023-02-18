@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:loveday/Image/vanleon.dart';
 
@@ -13,7 +14,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  DateTime firstDay = DateTime.now();
+
+  late SharedPreferences prefs;
+
+  Future getLiberation() async { // 해방 예정일 저장하는 Future
+    prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
+    final int? liberationDay = prefs.getInt('liberationday');
+    return Text(
+      '${liberationDay}',
+      style:TextStyle(fontSize:60.0),
+    );
+  }
+
+  DateTime liberationDay = DateTime.now();
 
   void onHeartPressed() {
     showCupertinoDialog( // 쿠퍼티노 다이얼로그 실행
@@ -31,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // 날짜가 변경되면 실행되는 함수
               onDateTimeChanged: (DateTime date) {
                 setState(() {
-                  firstDay = date;
+                  liberationDay = date;
                 });
               },
             ),
@@ -59,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
             _DDay(
               // 하트 눌렀을 때 실행할 함수 전달하기
               onHeartPressed: onHeartPressed,
-              firstDay: firstDay,
+              firstDay: liberationDay,
             ),
             VanleonImage(),
           ]
@@ -104,7 +117,7 @@ class _DDay extends StatelessWidget {
           height:16.0,
         ),
         Text(
-          '우리 처음 만난 날',
+          '해방 예정일',
           style:textTheme.bodyText1,
         ),
         Text( // 임시로 지정한 만난 날짜
