@@ -164,9 +164,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 1)
-                    const VanleonImage(),
-                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 2)
-                    const ArchaeumImage(),
+                    const VanleonImage(), // 진힐라
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 1 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<2)
+                    const ArchaeumImage(), // 루시드
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 2 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<3)
+                    const ArchaeumImage(), // 윌
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 3 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<4)
+                    const ArchaeumImage(), // 데미안
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 4 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<5)
+                    const ArchaeumImage(), // 스우
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 5 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<6)
+                    const ArchaeumImage(), // 매그너스
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 6 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<7)
+                    const ArchaeumImage(), // 아카이럼
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays> 7 &&DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays<8)
+                    const ArchaeumImage(), // 반레온
                 ],
             )
         )
