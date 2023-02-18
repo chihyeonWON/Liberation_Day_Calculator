@@ -163,8 +163,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  const VanleonImage(),
-                ]
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 1)
+                    const VanleonImage(),
+                  if(DateTime(prefs!.getInt('month')!.toInt()).difference(DateTime(now.month)).inDays < 2)
+                    const ArchaeumImage(),
+                ],
             )
         )
     );
