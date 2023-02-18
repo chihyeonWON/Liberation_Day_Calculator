@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             color:Colors.white, // 배경색 흰색 지정
             height:300, // 높이 300 지정
             child: CupertinoDatePicker(
+              minimumDate: DateTime(liberationDay.year, liberationDay.month, liberationDay.day),
               // 시간 제외하고 날짜만 선택하기
               mode: CupertinoDatePickerMode.date,
               // 날짜가 변경되면 실행되는 함수
