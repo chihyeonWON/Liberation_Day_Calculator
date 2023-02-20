@@ -17,9 +17,17 @@ class _DarkmagicianImageState extends State<DarkmagicianImage> {
       false, //다이얼로그 바깥을 터치 시에 닫히도록 하는지 여부 (true: 닫힘, false: 닫히지않음)
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
-            //제목 정의
-            '해방을 축하드립니다! 해방 시 무기 옵션을 알려드립니다!',
+          title: Column(
+            children: [
+              Text(
+                //제목 정의
+                '해방을 축하드립니다!',
+              ),
+              Text(
+                //제목 정의
+                '해방 시 무기 옵션을 알려드립니다!',
+              ),
+            ],
           ),
           content: SingleChildScrollView(
             //내용 정의
