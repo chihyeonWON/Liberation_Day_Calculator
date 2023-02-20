@@ -30,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
   SharedPreferences? prefs;
 
   @override
-  void initState() {
+  void initState()  {
+    super.setState(() {
+    });
     super.initState();
     setYear().whenComplete(() {
       setState(() {});
@@ -45,21 +47,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future setYear() async {
     prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
-    int? year = prefs!.getInt('year');
+    int? year = prefs?.getInt('year') ?? now.year;
     return Text('$year', style:const TextStyle(fontSize:50.0),
     );
   }
 
   Future setMonth() async {
     prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
-    int? month = prefs!.getInt('month');
+    int? month = prefs?.getInt('month') ?? now.month;
     return Text('$month', style: const TextStyle(fontSize:50.0),
     );
   }
 
   Future setDay() async {
     prefs = await SharedPreferences.getInstance(); // 사용자의 저장소에 connection
-    int? day = prefs!.getInt('day');
+    int? day = prefs?.getInt('day') ?? now.day;
     return Text('$day', style: const TextStyle(fontSize:50.0),
     );
   }
@@ -81,9 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
               // 날짜가 변경되면 실행되는 함수
               onDateTimeChanged: (DateTime date) async {
                 prefs = await SharedPreferences.getInstance();
-                prefs!.setInt('year', date.year);
-                prefs!.setInt('month', date.month);
-                prefs!.setInt('day', date.day);
+                prefs?.setInt('year', date.year);
+                prefs?.setInt('month', date.month);
+                prefs?.setInt('day', date.day);
                 setState(() {
                 });
               },
@@ -112,49 +114,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height:50,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        '해방 : ',
-                        style:TextStyle(fontSize:50.0,),
-                      ),
-                      FutureBuilder(
-                        future:setYear(),
-                        builder:(context,snapshot) {
-                          if(snapshot.hasData) {
-                            return snapshot.data;
-                          }
-                          return const Text('년도를 선택하세요');
-                        }
-                      ),
-                      const Text('.', style:TextStyle(fontSize:50.0)),
-                      FutureBuilder(
-                          future:setMonth(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        const Text(
+                          '해방 : ',
+                          style:TextStyle(fontSize:50.0,),
+                        ),
+                        FutureBuilder(
+                          future:setYear(),
                           builder:(context,snapshot) {
                             if(snapshot.hasData) {
                               return snapshot.data;
                             }
-                            return const Text('월을 선택하세요');
+                            return const Text('년도를 선택하세요');
                           }
-                      ),
-                      const Text('.', style:TextStyle(fontSize:50.0)),
-                      FutureBuilder(
-                          future:setDay(),
-                          builder:(context,snapshot) {
-                            if(snapshot.hasData) {
-                              return snapshot.data;
+                        ),
+                        const Text('.', style:TextStyle(fontSize:50.0)),
+                        FutureBuilder(
+                            future:setMonth(),
+                            builder:(context,snapshot) {
+                              if(snapshot.hasData) {
+                                return snapshot.data;
+                              }
+                              return const Text('월을 선택하세요');
                             }
-                            return const Text('일을 선택하세요');
-                          }
-                      ),
-                    ],
+                        ),
+                        const Text('.', style:TextStyle(fontSize:50.0)),
+                        FutureBuilder(
+                            future:setDay(),
+                            builder:(context,snapshot) {
+                              if(snapshot.hasData) {
+                                return snapshot.data;
+                              }
+                              return const Text('일을 선택하세요');
+                            }
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height:70,
                   ),
                   Text( //
-                    '남은 날 : ${DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).difference(DateTime(now.year, now.month, now.day)).inDays}일',
-                    style: TextStyle(
+                    '남은 날 : ${DateTime(prefs?.getInt('year') ?? now.year.toInt(), prefs?.getInt('month') ?? now.month.toInt(), prefs?.getInt('day') ?? now.day.toInt()).difference(DateTime(now.year, now.month, now.day)).inDays}일',
+                    style: const TextStyle(
                       fontSize: 50.0,
                     )
                   ),
@@ -163,54 +168,54 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ElevatedButton(
                     onPressed: onHeartPressed,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const Text('해방예정일 선택하기',
+                    child: const Padding(
+                      padding:  EdgeInsets.all(8.0),
+                      child: Text('해방예정일 선택하기',
                           style: TextStyle(fontSize:30.0,)
                       ),
                     ),
                   ),
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month <= 0
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month <= 0
                   && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const DarkmagicianImage(), // 해방
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 1
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 1
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const JinheilaImage(), // 진힐라
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 2
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 2
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const LucidImage(), // 루시드
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 3
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 3
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const WillImage(), // 윌
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 4
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 4
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const DemianImage(), // 데미안
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 5
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 5
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const SeuuImage(), // 스우
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 6
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 6
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const MagnusImage(), // 매그너스
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 7
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 7
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const ArchaeumImage(), // 아카이럼
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 8
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month == 8
                       && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
                   )
                     const VanleonImage(), // 반레온
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month > 8
+                  if(DateTime(prefs?.getInt('year') ?? 0.toInt(), prefs?.getInt('month') ?? 0.toInt(), prefs?.getInt('day') ?? 0.toInt()).month - DateTime(now.year, now.month, now.day).month > 8
                   || DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year >= 1)
                     const SingleChildScrollView(
                       padding: EdgeInsets.only(top: 100.0, bottom:100.0,),
-                      child: const Text('해방일은 해방을 시작한 달부터 8개월 뒤입니다.',
+                      child:  Text('해방일은 해방을 시작한 달부터 8개월 뒤입니다.',
                           style: TextStyle(fontSize: 40)
                       ),
                     )
