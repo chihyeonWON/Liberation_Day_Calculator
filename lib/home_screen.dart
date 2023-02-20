@@ -170,25 +170,44 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month <= 0)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month <= 0
+                  && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const DarkmagicianImage(), // 해방
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 1)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 1
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const JinheilaImage(), // 진힐라
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 2)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 2
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const LucidImage(), // 루시드
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 3)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 3
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const WillImage(), // 윌
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 4)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 4
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const DemianImage(), // 데미안
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 5)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 5
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const SeuuImage(), // 스우
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 6)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 6
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const MagnusImage(), // 매그너스
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 7)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 7
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const ArchaeumImage(), // 아카이럼
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 8)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month == 8
+                      && DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year == 0
+                  )
                     const VanleonImage(), // 반레온
-                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month > 8)
+                  if(DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).month - DateTime(now.year, now.month, now.day).month > 8
+                  || DateTime(prefs!.getInt('year')!.toInt(), prefs!.getInt('month')!.toInt(), prefs!.getInt('day')!.toInt()).year - DateTime(now.year, now.month, now.day).year >= 1)
                     const SingleChildScrollView(
                       padding: EdgeInsets.only(top: 100.0, bottom:100.0,),
                       child: const Text('해방일은 해방을 시작한 달부터 8개월 뒤입니다.',
